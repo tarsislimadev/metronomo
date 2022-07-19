@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Metronomo</title>
+</head>
+
+<body>
+  <div id="app"></div>
+
+  <script src="nTag.js"></script>
+
+  <script>
+    nTag.fromElement(document.body)
+      .setStyle('padding', '0')
+      .setStyle('color', '#776e65')
+      .setStyle('margin', '1rem 0')
+      .setStyle('font-size', '16px')
+      .setStyle('background-color', '#faf8ef')
+      .setStyle('font-family', '"Clear Sans", "Helvetica Neue", Arial, sans-serif')
+
+    const app = nTag.fromId('app')
+
+    const center = new nCenter()
+
+    const title = new nTag()
+    title.setText('Metronomo')
+    title.setStyle('font-size', '3rem')
+    title.setStyle('text-align', 'center')
+    title.setStyle('margin-bottom', '1rem')
+    title.setContainerStyle('margin-bottom', '3rem')
+    center.append(title)
+
+    const numbers_squares = new nFlex()
+
+    const colorSquare = 'rgb(202, 200, 191)'
+    const colorSelectedSquare = 'rgb(186, 184, 175)'
+
+    const squares = Array.from(['1', '2', '3', '4']).map((num) => {
+      const square = new nTag()
+      square.setText(num)
+      square.setStyle('width', '8rem')
+      square.setStyle('height', '8rem')
+      square.setStyle('font-size', '3rem')
+      square.setStyle('cursor', 'pointer')
+      square.setStyle('line-height', '8rem')
+      square.setStyle('text-align', 'center')
+      square.setContainerStyle('margin-bottom', '3rem')
+      square.setContainerStyle('border-radius', '.5rem')
+      square.setContainerStyle('background-color', colorSquare)
+      return square
+    })
+
+    const setBackgroundColor = (el) => el.setContainerStyle(
+      'background-color',
+      el.getContainerStyle('background-color') == colorSquare
+        ? colorSelectedSquare : colorSquare
+    )
+
+    squares[0].on('click', function () {
+      setBackgroundColor(this)
+    })
+
+    squares[1].on('click', function () {
+      setBackgroundColor(this)
+    })
+
+    squares[2].on('click', function () {
+      setBackgroundColor(this)
+    })
+
+    squares[3].on('click', function () {
+      setBackgroundColor(this)
+    })
+
+    squares.map(s => numbers_squares.append(s))
+
+    center.append(numbers_squares)
+
+    const velocity = new nFlex()
+
+    velocity.setStyle('margin', '1rem')
+    velocity.setStyle('padding', '2rem')
+    velocity.setStyle('font-size', '3rem')
+    velocity.setStyle('text-align', 'center')
+    velocity.setStyle('background-color', '1rem')
+    velocity.setContainerStyle('margin-bottom', '3rem')
+    velocity.setContainerStyle('border-radius', '.5rem')
+    velocity.setContainerStyle('background-color', '#cac8bf')
+
+    const num = new nTag()
+
+    const setVelocity = (n) => num.setText(n)
+    setVelocity(120)
+
+    const minus = new nTag()
+    minus.setText('-')
+    minus.setStyle('cursor', 'pointer')
+    minus.on('click', () => setVelocity(+num.getText() - 1))
+
+    const plus = new nTag()
+    plus.setText('+')
+    plus.setStyle('cursor', 'pointer')
+    plus.on('click', () => setVelocity(+num.getText() + 1))
+
+    velocity.append(minus)
+    velocity.append(num)
+    velocity.append(plus)
+
+    center.append(velocity)
+
+    const start_button = new nTag()
+    start_button.setText('Start')
+    start_button.setStyle('margin', '1rem')
+    start_button.setStyle('padding', '2rem')
+    start_button.setStyle('font-size', '3rem')
+    start_button.setStyle('cursor', 'pointer')
+    start_button.setStyle('text-align', 'center')
+    start_button.setStyle('background-color', '1rem')
+    start_button.setContainerStyle('border-radius', '.5rem')
+    start_button.setContainerStyle('background-color', '#cac8bf')
+    center.append(start_button)
+
+    app.append(center)
+
+  </script>
+</body>
+
+</html>
