@@ -2,14 +2,10 @@
 
 Aplicativo que regula e marca o ritmo, o andamento musical.
 
-## How to build in development environment
+## Stack
 
-TODO
-
-## How to build in production environment
-
-TODO
+[Docker](https://www.docker.com/)
 
 ## License
 
-[MIT](LICENSE)
+[MIT](./LICENSE)
