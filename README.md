@@ -6,6 +6,10 @@ Aplicativo que regula e marca o ritmo, o andamento musical.
 
 [Docker](https://www.docker.com/)
 
+## How to
+
+TODO
+
 ## License
 
 [MIT](./LICENSE)
